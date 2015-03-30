@@ -28,7 +28,7 @@ html, body, .reveal div, .reveal span, .reveal applet, .reveal object, .reveal i
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
+	/*font: inherit;*/
 	vertical-align: baseline;
 }
 
@@ -370,6 +370,10 @@ body {
 	text-align: center;
 	perspective: 600px;
 	perspective-origin: 50% 40%;
+
+  .left {
+    text-align: left;
+  }
 }
 
 .reveal .slides>section {
@@ -1312,5 +1316,3 @@ body {
 .zoomed .reveal .roll span:after {
 	visibility: hidden;
 }
-
-
