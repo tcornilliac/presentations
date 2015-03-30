@@ -17,7 +17,7 @@
     height: 64px;
     width: 64px;
     background-repeat: no-repeat;
-    background-image: url('/images/play-icon.svg');
+    background-image: url('../images/play-icon.svg');
     background-size: 50px;
     background-color: #FFF;
     background-position: center;
