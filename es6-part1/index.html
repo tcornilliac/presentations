@@ -44,9 +44,17 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
 				<section>
-					<h1>ECMAScript 6 (ES6)</h1>
-					<h3>Getting started today</h3>
+					<h1>ECMAScript 6</h1>
+					<h2>A PRIMER</h2>
 				</section>
+
+        <section>
+          <p>
+            While this presentation is largely technical, this is also good
+            information for sales, marketing and UX. The onset of ES6 in the
+            market will certainly create new opportunities with new and existing clients.
+          </p>
+        </section>
 
         <section style="background: rgba(245, 245, 245, 0.70)">
           <h3>What is ECMA?</h3>
@@ -77,24 +85,51 @@
           <p>The <a href="https://people.mozilla.org/~jorendorff/es6-draft.html">draft specification</a> contains the full list</p>
         </section>
 
-        <section style="background: rgba(245, 245, 245, 0.70)">
-          <h3><code>&lt;caveat&gt;</code>This is just a primer. Subsequent presentations will provide more detail.<code>&lt;/caveat&gt;</code></h3>
-        </section>
 
+
+        <!-- Default Parameters for functions -->
         <section>
-<h3>block scoped variables</h3>
-<button class='run' title="Run code"></button>
-<div class='ace'>
-var arr = [1,2,3];
-var o = [];
+          <h3>Default Parameters</h3>
+          <button class='run' title="Run code"></button>
+          <div class='ace'>
 
-for(var i = 0; i&lt;arr.length;i++) {
-  var val = arr[i];
-  o.push(function(){ alert(val); });
+function logDefaults(a = 1, b = 2) {
+  alert(a);
 }
 
-o.forEach(function(func){ func(); });
-</div>
+logDefaults();
+
+          </div>
+        </section>
+
+
+
+        <!-- New Block Scope using 'let' keyword -->
+        <section>
+          <h3>Block Scope (let)</h3>
+          <button class='run' title="Run code"></button>
+          <div class='ace'>
+
+function logDefaults(a = 1, b = 2) {
+  alert(a);
+}
+
+logDefaults();
+
+          </div>
+        </section>
+
+
+
+        <!-- New Block Scope using 'const' keyword -->
+        <section>
+          <h3>Block Scope (const)</h3>
+          <button class='run' title="Run code"></button>
+          <div class='ace'>
+
+                    tbd
+
+          </div>
         </section>
 
       </div>
