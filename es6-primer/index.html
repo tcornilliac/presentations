@@ -316,6 +316,7 @@ alert(new CollectionView( [ 1,2 ] ).render());
     <section>
       <h3>Modules - Named Exports</h3>
       <div class='ace'>
+// mymodule.js
 var double = function( x ) {
   return x + x;
 }
@@ -335,7 +336,8 @@ square( 3 );
     <section>
       <h3>Modules - Default Export</h3>
       <div class='ace'>
-export default function square( x ){
+// mymodule.js
+export default function ( x ) {
   return x * x;
 }
 // In another file
@@ -347,10 +349,26 @@ square( 3 );
 
 
     <section>
+      <h3>Modules - Import Namespace</h3>
+      <div class='ace'>
+// mymodule.js
+var name = 'Module';
+var location = 'Internets';
+export name;
+export location;
+// In another file
+import * as mystuff from 'mymodule'
+// mystuff.name would be 'Module'
+      </div>
+    </section>
+
+
+
+    <section>
       <h3>Module Loading</h3>
       <p>Most use <a href="https://github.com/systemjs/systemjs" target="_blank">SystemJS</a> or <a href="https://github.com/ModuleLoader/es6-module-loader" target="_blank">ES6 Module Loader Polyfill</a></p>
       <div class='ace'>
-System.import( "mymodule" ).then( function( m ) {
+System.import( 'mymodule' ).then( function( m ) {
   alert( 'square: ' + m.square( 7 ) );
 });
       </div>
