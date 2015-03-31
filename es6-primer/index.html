@@ -366,12 +366,20 @@ import * as mystuff from 'mymodule'
 
     <section>
       <h3>Module Loading</h3>
-      <p>Most use <a href="https://github.com/systemjs/systemjs" target="_blank">SystemJS</a> or <a href="https://github.com/ModuleLoader/es6-module-loader" target="_blank">ES6 Module Loader Polyfill</a></p>
+      <p>Check out <a href="https://github.com/ModuleLoader/es6-module-loader" target="_blank">ES6 Module Loader Polyfill</a> and <a href="https://github.com/systemjs/systemjs" target="_blank">SystemJS</a></p>
       <div class='ace'>
 System.import( 'mymodule' ).then( function( m ) {
   alert( 'square: ' + m.square( 7 ) );
 });
       </div>
+    </section>
+
+
+
+    <section>
+      <h3>Module Production Workflows</h3>
+      <p>Use SystemJS to create bundles</p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/0VUjM-jJf2U" frameborder="0" allowfullscreen></iframe>
     </section>
 
 
