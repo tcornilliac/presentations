@@ -200,6 +200,152 @@ alert(gen(1000));
         <li>call(), apply(), bind() do not work</li>
       </aside>
     </section>
+    
+    <section>
+      <h2>Classes</h2>
+      <button class='run' title="Run code"></button>
+      <div class='ace'>
+class Address {
+  constructor( city, state ) {
+    this.city = city;
+    this.state = state;
+  }
+  toString() {
+    return `${this.city}, ${this.state}`;
+  }
+}
+alert( new Address( 'Marlborough', 'MA' ).toString() );
+      </div>
+    </section>
+
+    <section>
+      <h2>Statics</h2>
+      <button class='run' title="Run code"></button>
+      <div class='ace'>
+class Address {
+  constructor( name ) {
+    this.name = name;
+  }
+  static defaultType() {
+    return 'billing';
+  }
+}
+alert( Address.defaultType() );
+      </div>
+    </section>
+
+    <section>
+      <h2>Getters/Setters</h2>
+      <button class='run' title="Run code"></button>
+      <div class='ace'>
+class Person {
+  get fullName() {
+    return `First:${this.first} Last:${this.last}`;
+  }
+  set fullName( value ) {
+    let parts = value.split(' ');
+    this.first = parts[0];
+    this.last = parts[1];
+  }
+}
+let p = new Person();
+p.fullName = 'Kevin Kazmierczak';
+alert( p.fullName );
+      </div>
+    </section>
+
+    <section>
+    <h2>Inheritence</h2>
+      <button class='run' title="Run code"></button>
+      <div class='ace'>
+class View {
+  render() {
+    return 'This is the base view';
+  }
+}
+class CollectionView extends View {
+  constructor( collection ) {
+    super( collection );
+    this.collection = collection;
+  }
+  render() {
+    var content = super.render();
+    return content += `\nHas ${this.collection.length} records`;
+  }
+}
+alert(new CollectionView( [ 1,2 ] ).render());
+      </div>
+    </section>
+
+    <section>
+      <h2>Modules - Named Exports</h2>
+      <div class='ace'>
+var double = function( x ) {
+  return x + x;
+}
+var square = function( x ) {
+  return x * x;
+}
+export { double, square }
+// In another file
+import { double, square } from 'mymodule';
+double( 2 );
+square( 3 );
+      </div>
+    </section>
+
+    <section>
+      <h2>Modules - Default Export</h2>
+      <div class='ace'>
+export default function square( x ){
+  return x * x;
+}
+// In another file
+import square from 'mymodule'
+square( 3 );
+      </div>
+    </section>
+
+    <section>
+      <h2>Module Loading</h2>
+      <p>Most use <a href="https://github.com/systemjs/systemjs" target="_blank">SystemJS</a> or <a href="https://github.com/ModuleLoader/es6-module-loader" target="_blank">ES6 Module Loader Polyfill</a></p>
+      <div class='ace'>
+System.import( "mymodule" ).then( function( m ) {
+  alert( 'square: ' + m.square( 7 ) );
+});
+      </div>
+    </section>
+
+    <section>
+      <h2>Transpiling</h2>
+      <ul>
+        <li class="fragment"><a href="https://babeljs.io/" target="_blank">Babel</a> ( formerly 6to5 )</li>
+        <li class="fragment"><a href="https://github.com/google/traceur-compiler" target="_blank">Google Traceur</a></li>
+        <li class="fragment">Not everything can be transpiled (polyfills/shims/etc)</li>
+        <li class="fragment">Sourcemaps let you debug in ES6</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Transpiling - Integration</h2>
+      <ul>
+        <li class="fragment">Works with all the major build tools</li>
+        <li class="fragment">Built in WebStorm Watcher (uses Traceur)</li>
+        <li class="fragment">Webpack ES6 Loader</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Transpiling - Notes</h2>
+      <ul>
+        <li class="fragment">Babel claims better JSX/React support</li>
+        <li class="fragment">Babel seems to generate friendly ES5 code</li>
+        <li class="fragment">Both can export modules to Common.js or AMD</li>
+        <li class="fragment">Try it out using the online REPL tools</li>
+        <li class="fragment"><a href="https://babeljs.io/repl/" target="_blank">Babel REPL</a></li>
+        <li class="fragment"><a href="https://google.github.io/traceur-compiler/demo/repl.html#" target="_blank">Traceur REPL</a> </li>
+      </ul>
+    </section>
 
   </div>
 
