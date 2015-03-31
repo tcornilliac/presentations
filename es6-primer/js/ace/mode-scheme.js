@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
  *
@@ -57,6 +58,10 @@ exports.Mode = Mode;
 
 ace.define('ace/mode/scheme_highlight_rules', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/mode/text_highlight_rules'], function(require, exports, module) {
 
+=======
+define("ace/mode/scheme_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var oop = require("../lib/oop");
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
@@ -140,3 +145,28 @@ oop.inherits(SchemeHighlightRules, TextHighlightRules);
 
 exports.SchemeHighlightRules = SchemeHighlightRules;
 });
+<<<<<<< HEAD
+=======
+
+define("ace/mode/scheme",["require","exports","module","ace/lib/oop","ace/mode/text","ace/mode/scheme_highlight_rules"], function(require, exports, module) {
+"use strict";
+
+var oop = require("../lib/oop");
+var TextMode = require("./text").Mode;
+var SchemeHighlightRules = require("./scheme_highlight_rules").SchemeHighlightRules;
+
+var Mode = function() {
+    this.HighlightRules = SchemeHighlightRules;
+};
+oop.inherits(Mode, TextMode);
+
+(function() {
+       
+    this.lineCommentStart = ";";
+    
+    this.$id = "ace/mode/scheme";
+}).call(Mode.prototype);
+
+exports.Mode = Mode;
+});
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b

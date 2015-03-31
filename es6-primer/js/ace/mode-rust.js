@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
  *
@@ -58,6 +59,10 @@ exports.Mode = Mode;
 
 ace.define('ace/mode/rust_highlight_rules', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/mode/text_highlight_rules'], function(require, exports, module) {
 
+=======
+define("ace/mode/rust_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var oop = require("../lib/oop");
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
@@ -75,6 +80,38 @@ var RustHighlightRules = function() {
                 next: 'pop' },
               { include: '#rust_escaped_character' },
               { defaultToken: 'string.quoted.single.source.rust' } ] },
+<<<<<<< HEAD
+=======
+         {
+            stateName: "bracketedComment",
+            onMatch : function(value, currentState, stack){
+                stack.unshift(this.next, value.length - 1, currentState);
+                return "string.quoted.raw.source.rust";
+            },
+            regex : /r#*"/,
+            next  : [
+                {
+                    onMatch : function(value, currentState, stack) {
+                        var token = "string.quoted.raw.source.rust";
+                        if (value.length >= stack[1]) {
+                            if (value.length > stack[1])
+                                token = "invalid";
+                            stack.shift();
+                            stack.shift();
+                            this.next = stack.shift();
+                        } else {
+                            this.next = "";
+                        }
+                        return token;
+                    },
+                    regex : /"#*/,
+                    next  : "start"
+                }, {
+                    defaultToken : "string.quoted.raw.source.rust"
+                }
+            ]
+         },
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
          { token: 'string.quoted.double.source.rust',
            regex: '"',
            push: 
@@ -122,10 +159,21 @@ var RustHighlightRules = function() {
                 regex: '$',
                 next: 'pop' },
               { defaultToken: 'comment.line.double-dash.source.rust' } ] },
+<<<<<<< HEAD
          { token: 'comment.block.source.rust',
            regex: '/\\*',
            push: 
             [ { token: 'comment.block.source.rust',
+=======
+         { token: 'comment.start.block.source.rust',
+           regex: '/\\*',
+           stateName: 'comment',
+           push: 
+            [ { token: 'comment.start.block.source.rust',
+                regex: '/\\*',
+                push: 'comment' },
+              { token: 'comment.end.block.source.rust',
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
                 regex: '\\*/',
                 next: 'pop' },
               { defaultToken: 'comment.block.source.rust' } ] } ],
@@ -148,8 +196,13 @@ oop.inherits(RustHighlightRules, TextHighlightRules);
 exports.RustHighlightRules = RustHighlightRules;
 });
 
+<<<<<<< HEAD
 ace.define('ace/mode/folding/cstyle', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/range', 'ace/mode/folding/fold_mode'], function(require, exports, module) {
 
+=======
+define("ace/mode/folding/cstyle",["require","exports","module","ace/lib/oop","ace/range","ace/mode/folding/fold_mode"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var oop = require("../../lib/oop");
 var Range = require("../../range").Range;
@@ -172,7 +225,11 @@ oop.inherits(FoldMode, BaseFoldMode);
     this.foldingStartMarker = /(\{|\[)[^\}\]]*$|^\s*(\/\*)/;
     this.foldingStopMarker = /^[^\[\{]*(\}|\])|^[\s\*]*(\*\/)/;
 
+<<<<<<< HEAD
     this.getFoldWidgetRange = function(session, foldStyle, row) {
+=======
+    this.getFoldWidgetRange = function(session, foldStyle, row, forceMultiline) {
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
         var line = session.getLine(row);
         var match = line.match(this.foldingStartMarker);
         if (match) {
@@ -180,11 +237,28 @@ oop.inherits(FoldMode, BaseFoldMode);
 
             if (match[1])
                 return this.openingBracketBlock(session, match[1], row, i);
+<<<<<<< HEAD
 
             return session.getCommentFoldRange(row, i + match[0].length, 1);
         }
 
         if (foldStyle !== "markbeginend")
+=======
+                
+            var range = session.getCommentFoldRange(row, i + match[0].length, 1);
+            
+            if (range && !range.isMultiLine()) {
+                if (forceMultiline) {
+                    range = this.getSectionRange(session, row);
+                } else if (foldStyle != "all")
+                    range = null;
+            }
+            
+            return range;
+        }
+
+        if (foldStyle === "markbegin")
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
             return;
 
         var match = line.match(this.foldingStopMarker);
@@ -197,7 +271,68 @@ oop.inherits(FoldMode, BaseFoldMode);
             return session.getCommentFoldRange(row, i, -1);
         }
     };
+<<<<<<< HEAD
+=======
+    
+    this.getSectionRange = function(session, row) {
+        var line = session.getLine(row);
+        var startIndent = line.search(/\S/);
+        var startRow = row;
+        var startColumn = line.length;
+        row = row + 1;
+        var endRow = row;
+        var maxRow = session.getLength();
+        while (++row < maxRow) {
+            line = session.getLine(row);
+            var indent = line.search(/\S/);
+            if (indent === -1)
+                continue;
+            if  (startIndent > indent)
+                break;
+            var subRange = this.getFoldWidgetRange(session, "all", row);
+            
+            if (subRange) {
+                if (subRange.start.row <= startRow) {
+                    break;
+                } else if (subRange.isMultiLine()) {
+                    row = subRange.end.row;
+                } else if (startIndent == indent) {
+                    break;
+                }
+            }
+            endRow = row;
+        }
+        
+        return new Range(startRow, startColumn, endRow, session.getLine(endRow).length);
+    };
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 }).call(FoldMode.prototype);
 
 });
+<<<<<<< HEAD
+=======
+
+define("ace/mode/rust",["require","exports","module","ace/lib/oop","ace/mode/text","ace/mode/rust_highlight_rules","ace/mode/folding/cstyle"], function(require, exports, module) {
+"use strict";
+
+var oop = require("../lib/oop");
+var TextMode = require("./text").Mode;
+var RustHighlightRules = require("./rust_highlight_rules").RustHighlightRules;
+var FoldMode = require("./folding/cstyle").FoldMode;
+
+var Mode = function() {
+    this.HighlightRules = RustHighlightRules;
+    this.foldingRules = new FoldMode();
+};
+oop.inherits(Mode, TextMode);
+
+(function() {
+    this.lineCommentStart = "//";
+    this.blockComment = {start: "/*", end: "*/"};
+    this.$id = "ace/mode/rust";
+}).call(Mode.prototype);
+
+exports.Mode = Mode;
+});
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b

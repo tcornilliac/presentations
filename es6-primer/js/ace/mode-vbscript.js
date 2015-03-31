@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
  *
@@ -58,6 +59,10 @@ exports.Mode = Mode;
 
 ace.define('ace/mode/vbscript_highlight_rules', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/mode/text_highlight_rules'], function(require, exports, module) {
 
+=======
+define("ace/mode/vbscript_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var oop = require("../lib/oop");
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
@@ -86,6 +91,10 @@ var VBScriptHighlightRules = function() {
         },
         {
             token: [
+<<<<<<< HEAD
+=======
+                "text",
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
                 "storage.type.function.asp",
                 "text",
                 "entity.name.function.asp",
@@ -94,7 +103,11 @@ var VBScriptHighlightRules = function() {
                 "variable.parameter.function.asp",
                 "punctuation.definition.parameters.asp"
             ],
+<<<<<<< HEAD
             regex: "^\\s*((?:Function|Sub))(\\s*)([a-zA-Z_]\\w*)(\\s*)(\\()([^)]*)(\\)).*\\n?"
+=======
+            regex: "^(\\s*)(Function|Sub)(\\s*)([a-zA-Z_]\\w*)(\\s*)(\\()([^)]*)(\\))"
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
         },
         {
             token: "punctuation.definition.comment.asp",
@@ -105,6 +118,7 @@ var VBScriptHighlightRules = function() {
             token: [
                 "keyword.control.asp"
             ],
+<<<<<<< HEAD
             regex: "(?:\\b(If|Then|Else|ElseIf|Else If|End If|While|Wend|For|To|Each|Case|Select|End Select|Return|Continue|Do|Until|Loop|Next|With|Exit Do|Exit For|Exit Function|Exit Property|Exit Sub|IIf)\\b)"
         },
         {
@@ -135,6 +149,28 @@ var VBScriptHighlightRules = function() {
             token: [
                 "punctuation.definition.string.begin.asp"
             ],
+=======
+            regex: "\\b(?:If|Then|Else|ElseIf|Else If|End If|While|Wend|For|To|Each|Case|Select|End Select|Return|Continue|Do|Until|Loop|Next|With|Exit Do|Exit For|Exit Function|Exit Property|Exit Sub|IIf)\\b"
+        },
+        {
+            token: "keyword.operator.asp",
+            regex: "\\b(?:Mod|And|Not|Or|Xor|as)\\b"
+        },
+        {
+            token: "storage.type.asp",
+            regex: "Dim|Call|Class|Const|Dim|Redim|Function|Sub|Private Sub|Public Sub|End sub|End Function|Set|Let|Get|New|Randomize|Option Explicit|On Error Resume Next|On Error GoTo"
+        },
+        {
+            token: "storage.modifier.asp",
+            regex: "\\b(?:Private|Public|Default)\\b"
+        },
+        {
+            token: "constant.language.asp",
+            regex: "\\b(?:Empty|False|Nothing|Null|True)\\b"
+        },
+        {
+            token: "punctuation.definition.string.begin.asp",
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
             regex: '"',
             next: "string"
         },
@@ -145,6 +181,7 @@ var VBScriptHighlightRules = function() {
             regex: "(\\$)[a-zA-Z_x7f-xff][a-zA-Z0-9_x7f-xff]*?\\b\\s*"
         },
         {
+<<<<<<< HEAD
             token: [
                 "support.class.asp"
             ],
@@ -179,6 +216,30 @@ var VBScriptHighlightRules = function() {
                 "support.function.vb.asp"
             ],
             regex: "(?:\\b(Array|Add|Asc|Atn|CBool|CByte|CCur|CDate|CDbl|Chr|CInt|CLng|Conversions|Cos|CreateObject|CSng|CStr|Date|DateAdd|DateDiff|DatePart|DateSerial|DateValue|Day|Derived|Math|Escape|Eval|Exists|Exp|Filter|FormatCurrency|FormatDateTime|FormatNumber|FormatPercent|GetLocale|GetObject|GetRef|Hex|Hour|InputBox|InStr|InStrRev|Int|Fix|IsArray|IsDate|IsEmpty|IsNull|IsNumeric|IsObject|Item|Items|Join|Keys|LBound|LCase|Left|Len|LoadPicture|Log|LTrim|RTrim|Trim|Maths|Mid|Minute|Month|MonthName|MsgBox|Now|Oct|Remove|RemoveAll|Replace|RGB|Right|Rnd|Round|ScriptEngine|ScriptEngineBuildVersion|ScriptEngineMajorVersion|ScriptEngineMinorVersion|Second|SetLocale|Sgn|Sin|Space|Split|Sqr|StrComp|String|StrReverse|Tan|Time|Timer|TimeSerial|TimeValue|TypeName|UBound|UCase|Unescape|VarType|Weekday|WeekdayName|Year)\\b)"
+=======
+            token: "support.class.asp",
+            regex: "\\b(?:Application|ObjectContext|Request|Response|Server|Session)\\b"
+        },
+        {
+            token: "support.class.collection.asp",
+            regex: "\\b(?:Contents|StaticObjects|ClientCertificate|Cookies|Form|QueryString|ServerVariables)\\b"
+        },
+        {
+            token: "support.constant.asp",
+            regex: "\\b(?:TotalBytes|Buffer|CacheControl|Charset|ContentType|Expires|ExpiresAbsolute|IsClientConnected|PICS|Status|ScriptTimeout|CodePage|LCID|SessionID|Timeout)\\b"
+        },
+        {
+            token: "support.function.asp",
+            regex: "\\b(?:Lock|Unlock|SetAbort|SetComplete|BinaryRead|AddHeader|AppendToLog|BinaryWrite|Clear|End|Flush|Redirect|Write|CreateObject|HTMLEncode|MapPath|URLEncode|Abandon|Convert|Regex)\\b"
+        },
+        {
+            token: "support.function.event.asp",
+            regex: "\\b(?:Application_OnEnd|Application_OnStart|OnTransactionAbort|OnTransactionCommit|Session_OnEnd|Session_OnStart)\\b"
+        },
+        {
+            token: "support.function.vb.asp",
+            regex: "\\b(?:Array|Add|Asc|Atn|CBool|CByte|CCur|CDate|CDbl|Chr|CInt|CLng|Conversions|Cos|CreateObject|CSng|CStr|Date|DateAdd|DateDiff|DatePart|DateSerial|DateValue|Day|Derived|Math|Escape|Eval|Exists|Exp|Filter|FormatCurrency|FormatDateTime|FormatNumber|FormatPercent|GetLocale|GetObject|GetRef|Hex|Hour|InputBox|InStr|InStrRev|Int|Fix|IsArray|IsDate|IsEmpty|IsNull|IsNumeric|IsObject|Item|Items|Join|Keys|LBound|LCase|Left|Len|LoadPicture|Log|LTrim|RTrim|Trim|Maths|Mid|Minute|Month|MonthName|MsgBox|Now|Oct|Remove|RemoveAll|Replace|RGB|Right|Rnd|Round|ScriptEngine|ScriptEngineBuildVersion|ScriptEngineMajorVersion|ScriptEngineMinorVersion|Second|SetLocale|Sgn|Sin|Space|Split|Sqr|StrComp|String|StrReverse|Tan|Time|Timer|TimeSerial|TimeValue|TypeName|UBound|UCase|Unescape|VarType|Weekday|WeekdayName|Year)\\b"
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
         },
         {
             token: [
@@ -187,10 +248,15 @@ var VBScriptHighlightRules = function() {
             regex: "-?\\b(?:(?:0(?:x|X)[0-9a-fA-F]*)|(?:(?:[0-9]+\\.?[0-9]*)|(?:\\.[0-9]+))(?:(?:e|E)(?:\\+|-)?[0-9]+)?)(?:L|l|UL|ul|u|U|F|f)?\\b"
         },
         {
+<<<<<<< HEAD
             token: [
                 "support.type.vb.asp"
             ],
             regex: "(?:\\b(vbtrue|vbfalse|vbcr|vbcrlf|vbformfeed|vblf|vbnewline|vbnullchar|vbnullstring|int32|vbtab|vbverticaltab|vbbinarycompare|vbtextcomparevbsunday|vbmonday|vbtuesday|vbwednesday|vbthursday|vbfriday|vbsaturday|vbusesystemdayofweek|vbfirstjan1|vbfirstfourdays|vbfirstfullweek|vbgeneraldate|vblongdate|vbshortdate|vblongtime|vbshorttime|vbobjecterror|vbEmpty|vbNull|vbInteger|vbLong|vbSingle|vbDouble|vbCurrency|vbDate|vbString|vbObject|vbError|vbBoolean|vbVariant|vbDataObject|vbDecimal|vbByte|vbArray)\\b)"
+=======
+            token: "support.type.vb.asp",
+            regex: "\\b(?:vbtrue|vbfalse|vbcr|vbcrlf|vbformfeed|vblf|vbnewline|vbnullchar|vbnullstring|int32|vbtab|vbverticaltab|vbbinarycompare|vbtextcomparevbsunday|vbmonday|vbtuesday|vbwednesday|vbthursday|vbfriday|vbsaturday|vbusesystemdayofweek|vbfirstjan1|vbfirstfourdays|vbfirstfullweek|vbgeneraldate|vblongdate|vbshortdate|vblongtime|vbshorttime|vbobjecterror|vbEmpty|vbNull|vbInteger|vbLong|vbSingle|vbDouble|vbCurrency|vbDate|vbString|vbObject|vbError|vbBoolean|vbVariant|vbDataObject|vbDecimal|vbByte|vbArray)\\b"
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
         },
         {
             token: [
@@ -226,10 +292,14 @@ var VBScriptHighlightRules = function() {
     ],
     "state_4": [
         {
+<<<<<<< HEAD
             token: [
                 "meta.odd-tab.spaces",
                 "meta.even-tab.spaces"
             ],
+=======
+            token: ["meta.odd-tab.spaces", "meta.even-tab.spaces"],
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
             regex: "(  )(  )?"
         },
         {
@@ -238,9 +308,13 @@ var VBScriptHighlightRules = function() {
             next: "start"
         },
         {
+<<<<<<< HEAD
             token: "meta.leading-space",
             regex: ".",
             next: "state_4"
+=======
+            defaultToken: "meta.leading-space"
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
         }
     ],
     "comment": [
@@ -250,8 +324,12 @@ var VBScriptHighlightRules = function() {
             next: "start"
         },
         {
+<<<<<<< HEAD
             token: "comment.line.apostrophe.asp",
             regex: "."
+=======
+            defaultToken: "comment.line.apostrophe.asp"
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
         }
     ],
     "string": [
@@ -265,8 +343,12 @@ var VBScriptHighlightRules = function() {
             next: "start"
         },
         {
+<<<<<<< HEAD
             token: "string.quoted.double.asp",
             regex: "."
+=======
+            defaultToken: "string.quoted.double.asp"
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
         }
     ]
 }
@@ -276,4 +358,30 @@ var VBScriptHighlightRules = function() {
 oop.inherits(VBScriptHighlightRules, TextHighlightRules);
 
 exports.VBScriptHighlightRules = VBScriptHighlightRules;
+<<<<<<< HEAD
 });
+=======
+});
+
+define("ace/mode/vbscript",["require","exports","module","ace/lib/oop","ace/mode/text","ace/mode/vbscript_highlight_rules"], function(require, exports, module) {
+"use strict";
+
+var oop = require("../lib/oop");
+var TextMode = require("./text").Mode;
+var VBScriptHighlightRules = require("./vbscript_highlight_rules").VBScriptHighlightRules;
+
+var Mode = function() {
+    this.HighlightRules = VBScriptHighlightRules;
+};
+oop.inherits(Mode, TextMode);
+
+(function() {
+       
+    this.lineCommentStart = ["'", "REM"];
+    
+    this.$id = "ace/mode/vbscript";
+}).call(Mode.prototype);
+
+exports.Mode = Mode;
+});
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b

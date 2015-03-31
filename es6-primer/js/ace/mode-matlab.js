@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
  *
@@ -55,6 +56,10 @@ exports.Mode = Mode;
 
 ace.define('ace/mode/matlab_highlight_rules', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/mode/text_highlight_rules'], function(require, exports, module) {
 
+=======
+define("ace/mode/matlab_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var oop = require("../lib/oop");
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
@@ -189,6 +194,7 @@ var keywords = (
     }, "identifier", true);
 
     this.$rules = {
+<<<<<<< HEAD
         "start" : [ {
             token : "comment",
             regex : "^%[^\r\n]*"
@@ -198,6 +204,54 @@ var keywords = (
         }, {
             token : "string",           // ' string
             regex : "'.*?'"
+=======
+        start: [{ 
+            token : "string",
+            regex : "'",
+            stateName : "qstring",
+            next  : [{
+                token : "constant.language.escape",
+                regex : "''"
+            }, {
+                token : "string",
+                regex : "'|$",
+                next  : "start"
+            }, {
+                defaultToken: "string"
+            }]
+        }, {
+            token : "text",
+            regex : "\\s+"
+        }, {
+            regex: "",
+            next: "noQstring"
+        }],        
+        noQstring : [{
+            regex: "^\\s*%{\\s*$",
+            token: "comment.start",
+            push: "blockComment"
+        }, {
+            token : "comment",
+            regex : "%[^\r\n]*"
+        }, {
+            token : "string",
+            regex : '"',
+            stateName : "qqstring",
+            next  : [{
+                token : "constant.language.escape",
+                regex : /\\./
+            }, {
+                token : "string",
+                regex : "\\\\$",
+                next  : "qqstring"
+            }, {
+                token : "string",
+                regex : '"|$',
+                next  : "start"
+            }, {
+                defaultToken: "string"
+            }]
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
         }, {
             token : "constant.numeric", // float
             regex : "[+-]?\\d+(?:(?:\\.\\d*)?(?:[eE][+-]?\\d+)?)?\\b"
@@ -206,6 +260,7 @@ var keywords = (
             regex : "[a-zA-Z_$][a-zA-Z0-9_$]*\\b"
         }, {
             token : "keyword.operator",
+<<<<<<< HEAD
             regex : "\\+|\\-|\\/|\\/\\/|%|<@>|@>|<@|&|\\^|~|<|>|<=|=>|==|!=|<>|="
         }, {
              token : "punctuation.operator",
@@ -221,9 +276,75 @@ var keywords = (
             regex : "\\s+"
         } ]
     };
+=======
+            regex : "\\+|\\-|\\/|\\/\\/|<@>|@>|<@|&|\\^|~|<|>|<=|=>|==|!=|<>|=",
+            next: "start"
+        }, {
+            token : "punctuation.operator",
+            regex : "\\?|\\:|\\,|\\;|\\.",
+            next: "start"
+        }, {
+            token : "paren.lparen",
+            regex : "[({\\[]",
+            next: "start"
+        }, {
+            token : "paren.rparen",
+            regex : "[\\]})]"
+        }, {
+            token : "text",
+            regex : "\\s+"
+        }, {
+            token : "text",
+            regex : "$",
+            next  : "start"
+        }],
+        blockComment: [{
+            regex: "^\\s*%{\\s*$",
+            token: "comment.start",
+            push: "blockComment"
+        }, {
+            regex: "^\\s*%}\\s*$",
+            token: "comment.end",
+            next: "pop"
+        }, {
+            defaultToken: "comment"
+        }],
+    };
+    
+    this.normalizeRules();
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 };
 
 oop.inherits(MatlabHighlightRules, TextHighlightRules);
 
 exports.MatlabHighlightRules = MatlabHighlightRules;
+<<<<<<< HEAD
 });
+=======
+});
+
+define("ace/mode/matlab",["require","exports","module","ace/lib/oop","ace/mode/text","ace/mode/matlab_highlight_rules","ace/range"], function(require, exports, module) {
+"use strict";
+
+var oop = require("../lib/oop");
+var TextMode = require("./text").Mode;
+var MatlabHighlightRules = require("./matlab_highlight_rules").MatlabHighlightRules;
+var Range = require("../range").Range;
+
+var Mode = function() {
+    this.HighlightRules = MatlabHighlightRules;
+};
+oop.inherits(Mode, TextMode);
+
+(function() {
+
+    this.lineCommentStart = "%";
+    this.blockComment = {start: "%{", end: "%}"};
+
+    this.$id = "ace/mode/matlab";
+}).call(Mode.prototype);
+
+exports.Mode = Mode;
+
+});
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
  *
@@ -53,6 +54,10 @@ exports.Mode = Mode;
 
 ace.define('ace/mode/diff_highlight_rules', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/mode/text_highlight_rules'], function(require, exports, module) {
 
+=======
+define("ace/mode/diff_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var oop = require("../lib/oop");
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
@@ -128,8 +133,13 @@ oop.inherits(DiffHighlightRules, TextHighlightRules);
 exports.DiffHighlightRules = DiffHighlightRules;
 });
 
+<<<<<<< HEAD
 ace.define('ace/mode/folding/diff', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/mode/folding/fold_mode', 'ace/range'], function(require, exports, module) {
 
+=======
+define("ace/mode/folding/diff",["require","exports","module","ace/lib/oop","ace/mode/folding/fold_mode","ace/range"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var oop = require("../../lib/oop");
 var BaseFoldMode = require("./fold_mode").FoldMode;
@@ -167,3 +177,29 @@ oop.inherits(FoldMode, BaseFoldMode);
 }).call(FoldMode.prototype);
 
 });
+<<<<<<< HEAD
+=======
+
+define("ace/mode/diff",["require","exports","module","ace/lib/oop","ace/mode/text","ace/mode/diff_highlight_rules","ace/mode/folding/diff"], function(require, exports, module) {
+"use strict";
+
+var oop = require("../lib/oop");
+var TextMode = require("./text").Mode;
+var HighlightRules = require("./diff_highlight_rules").DiffHighlightRules;
+var FoldMode = require("./folding/diff").FoldMode;
+
+var Mode = function() {
+    this.HighlightRules = HighlightRules;
+    this.foldingRules = new FoldMode(["diff", "index", "\\+{3}", "@@|\\*{5}"], "i");
+};
+oop.inherits(Mode, TextMode);
+
+(function() {
+
+    this.$id = "ace/mode/diff";
+}).call(Mode.prototype);
+
+exports.Mode = Mode;
+
+});
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b

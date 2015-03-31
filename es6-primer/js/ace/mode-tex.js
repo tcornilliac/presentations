@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * tex.js
  *
@@ -68,6 +69,10 @@ exports.Mode = Mode;
 });
 ace.define('ace/mode/tex_highlight_rules', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/lib/lang', 'ace/mode/text_highlight_rules'], function(require, exports, module) {
 
+=======
+define("ace/mode/tex_highlight_rules",["require","exports","module","ace/lib/oop","ace/lib/lang","ace/mode/text_highlight_rules"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var oop = require("../lib/oop");
 var lang = require("../lib/lang");
@@ -145,8 +150,13 @@ oop.inherits(TexHighlightRules, TextHighlightRules);
 exports.TexHighlightRules = TexHighlightRules;
 });
 
+<<<<<<< HEAD
 ace.define('ace/mode/matching_brace_outdent', ['require', 'exports', 'module' , 'ace/range'], function(require, exports, module) {
 
+=======
+define("ace/mode/matching_brace_outdent",["require","exports","module","ace/range"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var Range = require("../range").Range;
 
@@ -184,3 +194,38 @@ var MatchingBraceOutdent = function() {};
 
 exports.MatchingBraceOutdent = MatchingBraceOutdent;
 });
+<<<<<<< HEAD
+=======
+
+define("ace/mode/tex",["require","exports","module","ace/lib/oop","ace/mode/text","ace/mode/text_highlight_rules","ace/mode/tex_highlight_rules","ace/mode/matching_brace_outdent"], function(require, exports, module) {
+"use strict";
+
+var oop = require("../lib/oop");
+var TextMode = require("./text").Mode;
+var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
+var TexHighlightRules = require("./tex_highlight_rules").TexHighlightRules;
+var MatchingBraceOutdent = require("./matching_brace_outdent").MatchingBraceOutdent;
+
+var Mode = function(suppressHighlighting) {
+	if (suppressHighlighting)
+    	this.HighlightRules = TextHighlightRules;
+	else
+    	this.HighlightRules = TexHighlightRules;
+    this.$outdent = new MatchingBraceOutdent();
+};
+oop.inherits(Mode, TextMode);
+
+(function() {
+   this.getNextLineIndent = function(state, line, tab) {
+      return this.$getIndent(line);
+   };
+
+   this.allowAutoInsert = function() {
+      return false;
+   };
+    this.$id = "ace/mode/tex";
+}).call(Mode.prototype);
+
+exports.Mode = Mode;
+});
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b

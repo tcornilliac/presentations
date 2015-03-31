@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
  *
@@ -54,6 +55,10 @@ exports.Mode = Mode;
 
 ace.define('ace/mode/lisp_highlight_rules', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/mode/text_highlight_rules'], function(require, exports, module) {
 
+=======
+define("ace/mode/lisp_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var oop = require("../lib/oop");
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
@@ -134,3 +139,28 @@ oop.inherits(LispHighlightRules, TextHighlightRules);
 
 exports.LispHighlightRules = LispHighlightRules;
 });
+<<<<<<< HEAD
+=======
+
+define("ace/mode/lisp",["require","exports","module","ace/lib/oop","ace/mode/text","ace/mode/lisp_highlight_rules"], function(require, exports, module) {
+"use strict";
+
+var oop = require("../lib/oop");
+var TextMode = require("./text").Mode;
+var LispHighlightRules = require("./lisp_highlight_rules").LispHighlightRules;
+
+var Mode = function() {
+    this.HighlightRules = LispHighlightRules;
+};
+oop.inherits(Mode, TextMode);
+
+(function() {
+       
+    this.lineCommentStart = ";";
+    
+    this.$id = "ace/mode/lisp";
+}).call(Mode.prototype);
+
+exports.Mode = Mode;
+});
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b

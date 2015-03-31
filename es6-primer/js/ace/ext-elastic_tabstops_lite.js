@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
  *
@@ -30,6 +31,10 @@
 
 ace.define('ace/ext/elastic_tabstops_lite', ['require', 'exports', 'module' , 'ace/editor', 'ace/config'], function(require, exports, module) {
 
+=======
+define("ace/ext/elastic_tabstops_lite",["require","exports","module","ace/editor","ace/config"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var ElasticTabstopsLite = function(editor) {
     this.$editor = editor;
@@ -298,4 +303,12 @@ require("../config").defineOptions(Editor.prototype, "editor", {
     }
 });
 
+<<<<<<< HEAD
 });
+=======
+});
+                (function() {
+                    window.require(["ace/ext/elastic_tabstops_lite"], function() {});
+                })();
+            
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b

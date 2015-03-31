@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
  *
@@ -54,6 +55,10 @@ exports.Mode = Mode;
 
 ace.define('ace/mode/ada_highlight_rules', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/mode/text_highlight_rules'], function(require, exports, module) {
 
+=======
+define("ace/mode/ada_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var oop = require("../lib/oop");
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
@@ -114,4 +119,32 @@ var keywords = "abort|else|new|return|abs|elsif|not|reverse|abstract|end|null|ac
 oop.inherits(AdaHighlightRules, TextHighlightRules);
 
 exports.AdaHighlightRules = AdaHighlightRules;
+<<<<<<< HEAD
 });
+=======
+});
+
+define("ace/mode/ada",["require","exports","module","ace/lib/oop","ace/mode/text","ace/mode/ada_highlight_rules","ace/range"], function(require, exports, module) {
+"use strict";
+
+var oop = require("../lib/oop");
+var TextMode = require("./text").Mode;
+var AdaHighlightRules = require("./ada_highlight_rules").AdaHighlightRules;
+var Range = require("../range").Range;
+
+var Mode = function() {
+    this.HighlightRules = AdaHighlightRules;
+};
+oop.inherits(Mode, TextMode);
+
+(function() {
+
+    this.lineCommentStart = "--";
+
+    this.$id = "ace/mode/ada";
+}).call(Mode.prototype);
+
+exports.Mode = Mode;
+
+});
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b

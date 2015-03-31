@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
  *
@@ -57,6 +58,10 @@ exports.Mode = Mode;
 
 ace.define('ace/mode/toml_highlight_rules', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/mode/text_highlight_rules'], function(require, exports, module) {
 
+=======
+define("ace/mode/toml_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var oop = require("../lib/oop");
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
@@ -124,8 +129,13 @@ oop.inherits(TomlHighlightRules, TextHighlightRules);
 exports.TomlHighlightRules = TomlHighlightRules;
 });
 
+<<<<<<< HEAD
 ace.define('ace/mode/folding/ini', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/range', 'ace/mode/folding/fold_mode'], function(require, exports, module) {
 
+=======
+define("ace/mode/folding/ini",["require","exports","module","ace/lib/oop","ace/range","ace/mode/folding/fold_mode"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var oop = require("../../lib/oop");
 var Range = require("../../range").Range;
@@ -174,3 +184,28 @@ oop.inherits(FoldMode, BaseFoldMode);
 }).call(FoldMode.prototype);
 
 });
+<<<<<<< HEAD
+=======
+
+define("ace/mode/toml",["require","exports","module","ace/lib/oop","ace/mode/text","ace/mode/toml_highlight_rules","ace/mode/folding/ini"], function(require, exports, module) {
+"use strict";
+
+var oop = require("../lib/oop");
+var TextMode = require("./text").Mode;
+var TomlHighlightRules = require("./toml_highlight_rules").TomlHighlightRules;
+var FoldMode = require("./folding/ini").FoldMode;
+
+var Mode = function() {
+    this.HighlightRules = TomlHighlightRules;
+    this.foldingRules = new FoldMode();
+};
+oop.inherits(Mode, TextMode);
+
+(function() {
+    this.lineCommentStart = "#";
+    this.$id = "ace/mode/toml";
+}).call(Mode.prototype);
+
+exports.Mode = Mode;
+});
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b

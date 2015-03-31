@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
  *
@@ -52,6 +53,10 @@ exports.Mode = Mode;
 });
 ace.define('ace/mode/vhdl_highlight_rules', ['require', 'exports', 'module' , 'ace/lib/oop', 'ace/mode/text_highlight_rules'], function(require, exports, module) {
 
+=======
+define("ace/mode/vhdl_highlight_rules",["require","exports","module","ace/lib/oop","ace/mode/text_highlight_rules"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var oop = require("../lib/oop");
 var TextHighlightRules = require("./text_highlight_rules").TextHighlightRules;
@@ -136,3 +141,30 @@ oop.inherits(VHDLHighlightRules, TextHighlightRules);
 
 exports.VHDLHighlightRules = VHDLHighlightRules;
 });
+<<<<<<< HEAD
+=======
+
+define("ace/mode/vhdl",["require","exports","module","ace/lib/oop","ace/mode/text","ace/mode/vhdl_highlight_rules","ace/range"], function(require, exports, module) {
+"use strict";
+
+var oop = require("../lib/oop");
+var TextMode = require("./text").Mode;
+var VHDLHighlightRules = require("./vhdl_highlight_rules").VHDLHighlightRules;
+var Range = require("../range").Range;
+
+var Mode = function() {
+    this.HighlightRules = VHDLHighlightRules;
+};
+oop.inherits(Mode, TextMode);
+
+(function() {
+
+    this.lineCommentStart = "--";
+
+    this.$id = "ace/mode/vhdl";
+}).call(Mode.prototype);
+
+exports.Mode = Mode;
+
+});
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b

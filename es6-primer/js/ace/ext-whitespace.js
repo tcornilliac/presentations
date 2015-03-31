@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
  *
@@ -30,6 +31,10 @@
 
 ace.define('ace/ext/whitespace', ['require', 'exports', 'module' , 'ace/lib/lang'], function(require, exports, module) {
 
+=======
+define("ace/ext/whitespace",["require","exports","module","ace/lib/lang"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var lang = require("../lib/lang");
 exports.$detectIndentation = function(lines, fallback) {
@@ -43,7 +48,10 @@ exports.$detectIndentation = function(lines, fallback) {
         if (!/^\s*[^*+\-\s]/.test(line))
             continue;
 
+<<<<<<< HEAD
         var tabs = line.match(/^\t*/)[0].length;
+=======
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
         if (line[0] == "\t")
             tabIndents++;
 
@@ -56,10 +64,17 @@ exports.$detectIndentation = function(lines, fallback) {
             stats[spaces] = (stats[spaces] || 0) + 1;
         }
         prevSpaces = spaces;
+<<<<<<< HEAD
         while (line[line.length - 1] == "\\")
             line = lines[i++];
     }
 
+=======
+        while (i < max && line[line.length - 1] == "\\")
+            line = lines[i++];
+    }
+    
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
     function getScore(indent) {
         var score = 0;
         for (var i = indent; i < stats.length; i += indent)
@@ -72,6 +87,7 @@ exports.$detectIndentation = function(lines, fallback) {
     var first = {score: 0, length: 0};
     var spaceIndents = 0;
     for (var i = 1; i < 12; i++) {
+<<<<<<< HEAD
         if (i == 1) {
             spaceIndents = getScore(i);
             var score = 1;
@@ -81,6 +97,19 @@ exports.$detectIndentation = function(lines, fallback) {
         if (changes[i]) {
             score += changes[i] / changesTotal;
         }
+=======
+        var score = getScore(i);
+        if (i == 1) {
+            spaceIndents = score;
+            score = stats[1] ? 0.9 : 0.8;
+            if (!stats.length)
+                score = 0
+        } else
+            score /= spaceIndents;
+
+        if (changes[i])
+            score += changes[i] / changesTotal;
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
         if (score > first.score)
             first = {score: score, length: i};
@@ -92,7 +121,11 @@ exports.$detectIndentation = function(lines, fallback) {
     if (tabIndents > spaceIndents + 1)
         return {ch: "\t", length: tabLength};
 
+<<<<<<< HEAD
     if (spaceIndents + 1 > tabIndents)
+=======
+    if (spaceIndents > tabIndents + 1)
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
         return {ch: " ", length: tabLength};
 };
 
@@ -204,3 +237,10 @@ exports.commands = [{
 }];
 
 });
+<<<<<<< HEAD
+=======
+                (function() {
+                    window.require(["ace/ext/whitespace"], function() {});
+                })();
+            
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b

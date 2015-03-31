@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* ***** BEGIN LICENSE BLOCK *****
  * Distributed under the BSD license:
  *
@@ -30,6 +31,213 @@
 
 ace.define('ace/ext/textarea', ['require', 'exports', 'module' , 'ace/lib/event', 'ace/lib/useragent', 'ace/lib/net', 'ace/ace', 'ace/theme/textmate', 'ace/mode/text'], function(require, exports, module) {
 
+=======
+define("ace/theme/textmate",["require","exports","module","ace/lib/dom"], function(require, exports, module) {
+"use strict";
+
+exports.isDark = false;
+exports.cssClass = "ace-tm";
+exports.cssText = ".ace-tm .ace_gutter {\
+background: #f0f0f0;\
+color: #333;\
+}\
+.ace-tm .ace_print-margin {\
+width: 1px;\
+background: #e8e8e8;\
+}\
+.ace-tm .ace_fold {\
+background-color: #6B72E6;\
+}\
+.ace-tm {\
+background-color: #FFFFFF;\
+color: black;\
+}\
+.ace-tm .ace_cursor {\
+color: black;\
+}\
+.ace-tm .ace_invisible {\
+color: rgb(191, 191, 191);\
+}\
+.ace-tm .ace_storage,\
+.ace-tm .ace_keyword {\
+color: blue;\
+}\
+.ace-tm .ace_constant {\
+color: rgb(197, 6, 11);\
+}\
+.ace-tm .ace_constant.ace_buildin {\
+color: rgb(88, 72, 246);\
+}\
+.ace-tm .ace_constant.ace_language {\
+color: rgb(88, 92, 246);\
+}\
+.ace-tm .ace_constant.ace_library {\
+color: rgb(6, 150, 14);\
+}\
+.ace-tm .ace_invalid {\
+background-color: rgba(255, 0, 0, 0.1);\
+color: red;\
+}\
+.ace-tm .ace_support.ace_function {\
+color: rgb(60, 76, 114);\
+}\
+.ace-tm .ace_support.ace_constant {\
+color: rgb(6, 150, 14);\
+}\
+.ace-tm .ace_support.ace_type,\
+.ace-tm .ace_support.ace_class {\
+color: rgb(109, 121, 222);\
+}\
+.ace-tm .ace_keyword.ace_operator {\
+color: rgb(104, 118, 135);\
+}\
+.ace-tm .ace_string {\
+color: rgb(3, 106, 7);\
+}\
+.ace-tm .ace_comment {\
+color: rgb(76, 136, 107);\
+}\
+.ace-tm .ace_comment.ace_doc {\
+color: rgb(0, 102, 255);\
+}\
+.ace-tm .ace_comment.ace_doc.ace_tag {\
+color: rgb(128, 159, 191);\
+}\
+.ace-tm .ace_constant.ace_numeric {\
+color: rgb(0, 0, 205);\
+}\
+.ace-tm .ace_variable {\
+color: rgb(49, 132, 149);\
+}\
+.ace-tm .ace_xml-pe {\
+color: rgb(104, 104, 91);\
+}\
+.ace-tm .ace_entity.ace_name.ace_function {\
+color: #0000A2;\
+}\
+.ace-tm .ace_heading {\
+color: rgb(12, 7, 255);\
+}\
+.ace-tm .ace_list {\
+color:rgb(185, 6, 144);\
+}\
+.ace-tm .ace_meta.ace_tag {\
+color:rgb(0, 22, 142);\
+}\
+.ace-tm .ace_string.ace_regex {\
+color: rgb(255, 0, 0)\
+}\
+.ace-tm .ace_marker-layer .ace_selection {\
+background: rgb(181, 213, 255);\
+}\
+.ace-tm.ace_multiselect .ace_selection.ace_start {\
+box-shadow: 0 0 3px 0px white;\
+border-radius: 2px;\
+}\
+.ace-tm .ace_marker-layer .ace_step {\
+background: rgb(252, 255, 0);\
+}\
+.ace-tm .ace_marker-layer .ace_stack {\
+background: rgb(164, 229, 101);\
+}\
+.ace-tm .ace_marker-layer .ace_bracket {\
+margin: -1px 0 0 -1px;\
+border: 1px solid rgb(192, 192, 192);\
+}\
+.ace-tm .ace_marker-layer .ace_active-line {\
+background: rgba(0, 0, 0, 0.07);\
+}\
+.ace-tm .ace_gutter-active-line {\
+background-color : #dcdcdc;\
+}\
+.ace-tm .ace_marker-layer .ace_selected-word {\
+background: rgb(250, 250, 255);\
+border: 1px solid rgb(200, 200, 250);\
+}\
+.ace-tm .ace_indent-guide {\
+background: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==\") right repeat-y;\
+}\
+";
+
+var dom = require("../lib/dom");
+dom.importCssString(exports.cssText, exports.cssClass);
+});
+
+define("ace/ace",["require","exports","module","ace/lib/fixoldbrowsers","ace/lib/dom","ace/lib/event","ace/editor","ace/edit_session","ace/undomanager","ace/virtual_renderer","ace/worker/worker_client","ace/keyboard/hash_handler","ace/placeholder","ace/multi_select","ace/mode/folding/fold_mode","ace/theme/textmate","ace/ext/error_marker","ace/config"], function(require, exports, module) {
+"use strict";
+
+require("./lib/fixoldbrowsers");
+
+var dom = require("./lib/dom");
+var event = require("./lib/event");
+
+var Editor = require("./editor").Editor;
+var EditSession = require("./edit_session").EditSession;
+var UndoManager = require("./undomanager").UndoManager;
+var Renderer = require("./virtual_renderer").VirtualRenderer;
+require("./worker/worker_client");
+require("./keyboard/hash_handler");
+require("./placeholder");
+require("./multi_select");
+require("./mode/folding/fold_mode");
+require("./theme/textmate");
+require("./ext/error_marker");
+
+exports.config = require("./config");
+exports.require = require;
+exports.edit = function(el) {
+    if (typeof(el) == "string") {
+        var _id = el;
+        el = document.getElementById(_id);
+        if (!el)
+            throw new Error("ace.edit can't find div #" + _id);
+    }
+
+    if (el && el.env && el.env.editor instanceof Editor)
+        return el.env.editor;
+
+    var value = "";
+    if (el && /input|textarea/i.test(el.tagName)) {
+        var oldNode = el;
+        value = oldNode.value;
+        el = dom.createElement("pre");
+        oldNode.parentNode.replaceChild(el, oldNode);
+    } else {
+        value = dom.getInnerText(el);
+        el.innerHTML = '';
+    }
+
+    var doc = exports.createEditSession(value);
+
+    var editor = new Editor(new Renderer(el));
+    editor.setSession(doc);
+
+    var env = {
+        document: doc,
+        editor: editor,
+        onResize: editor.resize.bind(editor, null)
+    };
+    if (oldNode) env.textarea = oldNode;
+    event.addListener(window, "resize", env.onResize);
+    editor.on("destroy", function() {
+        event.removeListener(window, "resize", env.onResize);
+        env.editor.container.env = null; // prevent memory leak on old ie
+    });
+    editor.container.env = editor.env = env;
+    return editor;
+};
+exports.createEditSession = function(text, mode) {
+    var doc = new EditSession(text, mode);
+    doc.setUndoManager(new UndoManager());
+    return doc;
+}
+exports.EditSession = EditSession;
+exports.UndoManager = UndoManager;
+});
+
+define("ace/ext/textarea",["require","exports","module","ace/lib/event","ace/lib/useragent","ace/lib/net","ace/ace","ace/theme/textmate"], function(require, exports, module) {
+"use strict";
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
 var event = require("../lib/event");
 var UA = require("../lib/useragent");
@@ -102,7 +310,11 @@ function setupContainer(element, getValue) {
     return container;
 }
 
+<<<<<<< HEAD
 exports.transformTextarea = function(element, loader) {
+=======
+exports.transformTextarea = function(element, options) {
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
     var session;
     var container = setupContainer(element, function() {
         return session.getValue();
@@ -157,16 +369,26 @@ exports.transformTextarea = function(element, loader) {
 
     applyStyles(settingDiv, settingDivStyles);
     container.appendChild(settingDiv);
+<<<<<<< HEAD
     var options = {};
 
+=======
+
+    options = options || exports.defaultOptions;
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
     var editor = ace.edit(editorDiv);
     session = editor.getSession();
 
     session.setValue(element.value || element.innerHTML);
     editor.focus();
     container.appendChild(settingOpener);
+<<<<<<< HEAD
     setupApi(editor, editorDiv, settingDiv, ace, options, loader);
     setupSettingPanel(settingDiv, settingOpener, editor, options);
+=======
+    setupApi(editor, editorDiv, settingDiv, ace, options, load);
+    setupSettingPanel(settingDiv, settingOpener, editor);
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
 
     var state = "";
     event.addListener(settingOpener, "mousemove", function(e) {
@@ -231,6 +453,7 @@ function setupApi(editor, editorDiv, settingDiv, ace, options, loader) {
     };
 
     editor.$setOption = editor.setOption;
+<<<<<<< HEAD
     editor.setOption = function(key, value) {
         if (options[key] == value) return;
 
@@ -260,6 +483,17 @@ function setupApi(editor, editorDiv, settingDiv, ace, options, loader) {
                 editorDiv.style.fontSize = value;
             break;
 
+=======
+    editor.$getOption = editor.getOption;
+    editor.setOption = function(key, value) {
+        switch (key) {
+            case "mode":
+                editor.$setOption("mode", "ace/mode/" + value)
+            break;
+            case "theme":
+                editor.$setOption("theme", "ace/theme/" + value)
+            break;
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
             case "keybindings":
                 switch (value) {
                     case "vim":
@@ -274,6 +508,7 @@ function setupApi(editor, editorDiv, settingDiv, ace, options, loader) {
             break;
 
             case "softWrap":
+<<<<<<< HEAD
                 switch (value) {
                     case "off":
                         session.setUseWrapMode(false);
@@ -295,11 +530,16 @@ function setupApi(editor, editorDiv, settingDiv, ace, options, loader) {
                         renderer.setPrintMarginColumn(80);
                     break;
                 }
+=======
+            case "fontSize":
+                editor.$setOption(key, value);
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
             break;
             
             default:
                 editor.$setOption(key, toBool(value));
         }
+<<<<<<< HEAD
 
         options[key] = value;
     };
@@ -318,14 +558,57 @@ function setupApi(editor, editorDiv, settingDiv, ace, options, loader) {
 }
 
 function setupSettingPanel(settingDiv, settingOpener, editor, options) {
+=======
+    };
+
+    editor.getOption = function(key) {
+        switch (key) {
+            case "mode":
+                return editor.$getOption("mode").substr("ace/mode/".length)
+            break;
+
+            case "theme":
+                return editor.$getOption("theme").substr("ace/theme/".length)
+            break;
+
+            case "keybindings":
+                var value = editor.getKeyboardHandler()
+                switch (value && value.$id) {
+                    case "ace/keyboard/vim":
+                        return "vim";
+                    case "ace/keyboard/emacs":
+                        return "emacs";
+                    default:
+                        return "ace";
+                }
+            break;
+
+            default:
+                return editor.$getOption(key);
+        }
+    };
+
+    editor.setOptions(options);
+    return editor;
+}
+
+function setupSettingPanel(settingDiv, settingOpener, editor) {
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
     var BOOL = null;
 
     var desc = {
         mode:            "Mode:",
+<<<<<<< HEAD
         gutter:          "Display Gutter:",
         theme:           "Theme:",
         fontSize:        "Font Size:",
         softWrap:        "Soft Wrap:",
+=======
+        wrap:            "Soft Wrap:",
+        theme:           "Theme:",
+        fontSize:        "Font Size:",
+        showGutter:      "Display Gutter:",
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
         keybindings:     "Keyboard",
         showPrintMargin: "Show Print Margin:",
         useSoftTabs:     "Use Soft Tabs:",
@@ -378,7 +661,11 @@ function setupSettingPanel(settingDiv, settingOpener, editor, options) {
             twilight:         "Twilight",
             vibrant_ink:      "Vibrant Ink"
         },
+<<<<<<< HEAD
         gutter: BOOL,
+=======
+        showGutter: BOOL,
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
         fontSize: {
             "10px": "10px",
             "11px": "11px",
@@ -386,7 +673,11 @@ function setupSettingPanel(settingDiv, settingOpener, editor, options) {
             "14px": "14px",
             "16px": "16px"
         },
+<<<<<<< HEAD
         softWrap: {
+=======
+        wrap: {
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
             off:    "Off",
             40:     "40",
             80:     "80",
@@ -409,7 +700,11 @@ function setupSettingPanel(settingDiv, settingOpener, editor, options) {
         if (!obj) {
             builder.push(
                 "<input type='checkbox' title='", option, "' ",
+<<<<<<< HEAD
                     cValue == "true" ? "checked='true'" : "",
+=======
+                    cValue + "" == "true" ? "checked='true'" : "",
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
                "'></input>"
             );
             return;
@@ -429,10 +724,17 @@ function setupSettingPanel(settingDiv, settingOpener, editor, options) {
         builder.push("</select>");
     }
 
+<<<<<<< HEAD
     for (var option in options) {
         table.push("<tr><td>", desc[option], "</td>");
         table.push("<td>");
         renderOption(table, option, optionValues[option], options[option]);
+=======
+    for (var option in exports.defaultOptions) {
+        table.push("<tr><td>", desc[option], "</td>");
+        table.push("<td>");
+        renderOption(table, option, optionValues[option], editor.getOption(option));
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
         table.push("</td></tr>");
     }
     table.push("</table>");
@@ -463,12 +765,21 @@ function setupSettingPanel(settingDiv, settingOpener, editor, options) {
     settingDiv.appendChild(button);
     settingDiv.hideButton = button;
 }
+<<<<<<< HEAD
 exports.options = {
     mode:               "text",
     theme:              "textmate",
     gutter:             "false",
     fontSize:           "12px",
     softWrap:           "off",
+=======
+exports.defaultOptions = {
+    mode:               "javascript",
+    theme:              "textmate",
+    wrap:               "off",
+    fontSize:           "12px",
+    showGutter:         "false",
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
     keybindings:        "ace",
     showPrintMargin:    "false",
     useSoftTabs:        "true",
@@ -476,3 +787,10 @@ exports.options = {
 };
 
 });
+<<<<<<< HEAD
+=======
+                (function() {
+                    window.require(["ace/ext/textarea"], function() {});
+                })();
+            
+>>>>>>> 6fc80b839e98743818ac30d9d8dfb3084bb5b72b
